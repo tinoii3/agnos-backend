@@ -17,9 +17,7 @@ Starter backend scaffold using:
 - `scripts`: DB bootstrap SQL
 
 ## Quick Start
-
-1. (Optional) create `.env` from `.env.example`.
-2. Start everything:
+1. Start everything:
 
 ```bash
 docker compose up --build
