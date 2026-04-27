@@ -6,6 +6,7 @@ import (
 	"agnos-backend/internal/config"
 	"agnos-backend/internal/db"
 	"agnos-backend/internal/http"
+	"agnos-backend/internal/store"
 )
 
 func main() {
@@ -17,7 +18,9 @@ func main() {
 	}
 	defer dbPool.Close()
 
-	router := http.NewRouter(dbPool)
+	st := store.NewPostgresStore(dbPool)
+	server := http.NewServer(st, cfg.JWTSecret)
+	router := server.Router()
 
 	log.Printf("server starting on %s", cfg.AppPort)
 	if err := router.Run(":" + cfg.AppPort); err != nil {

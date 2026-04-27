@@ -25,13 +25,33 @@ docker compose up --build
 
 ## Endpoints
 
-- `GET /healthz` - app liveness check
-- `GET /readyz` - readiness check with Postgres ping
+- `GET /status` - app liveness check
+- `POST /staff/create` - create staff (`username`, `password`, `hospital`)
+- `POST /staff/login` - login and return JWT token (`username`, `password`, `hospital`)
+- `GET /patient/search` - patients matching criteria in same hospital as logged-in staff
+
+`/patient/search` supports optional filters:
+
+- `id` (can be either `national_id` or `passport_id`)
+- `national_id`
+- `passport_id`
+- `first_name`
+- `middle_name`
+- `last_name`
+- `date_of_birth`
+- `phone_number`
+- `email`
 
 Because Nginx is in front of the app, access endpoints via:
 
-- `http://localhost/healthz`
-- `http://localhost/readyz`
+- `http://localhost/status`
+- `http://localhost/patient/search`
+
+## Test
+
+```bash
+go test ./...
+```
 
 ## Run App Without Docker
 

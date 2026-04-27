@@ -6,6 +6,7 @@ services:
     environment:
       APP_PORT: 8080
       DATABASE_URL: postgres://postgres:postgres@db:5432/agnos?sslmode=disable
+      JWT_SECRET: super-secret-key
     depends_on:
       db:
         condition: service_healthy
@@ -19,7 +20,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: agnos
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -31,17 +32,17 @@ services:
     networks:
       - backend
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    networks:
-      - backend
-    depends_on:
-      - db
+  # pgadmin:
+  #   image: dpage/pgadmin4:latest
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: admin
+  #   ports:
+  #     - "5050:80"
+  #   networks:
+  #     - backend
+  #   depends_on:
+  #     - db
 
   nginx:
     image: nginx:1.30.0-alpine
