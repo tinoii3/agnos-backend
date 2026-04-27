@@ -29,12 +29,6 @@ CREATE INDEX IF NOT EXISTS idx_patients_hospital    ON patients (hospital);
 CREATE INDEX IF NOT EXISTS idx_patients_national_id ON patients (national_id);
 CREATE INDEX IF NOT EXISTS idx_patients_passport_id ON patients (passport_id);
 
-
-INSERT INTO staffs (username, password, hospital) VALUES
-('staff123',   '10176e7b7b24d317acfcf8d2064cfd2f24e154f7b5a96603077d5ef813d6a6b6', 'hospital-a'),
-('staff456',   '8f5dada329d6ade1fdba5e207b5a81b312ae838801ca287a00e9428620808dce', 'hospital-b'),
-('staff789',   '571eeecee49f17206833749f9cd3415b936317dd3d19e74e2218507134a4e2a0', 'hospital-c');
-
 INSERT INTO patients (first_name_th, middle_name_th, last_name_th, first_name_en, last_name_en, date_of_birth, patient_hn, national_id, passport_id, phone_number, email, gender, hospital) VALUES
 ('สมชาย',   NULL,      'ใจดี',   'Somchai',   'Jaidee',   '1990-01-15', 'HN-A-001', '1100100100001', NULL,          '0812345671', 'somchai@email.com',   'M', 'hospital-a'),
 ('สมหญิง',  NULL,      'รักดี',  'Somying',   'Rakdee',   '1985-06-20', 'HN-A-002', '1100100100002', NULL,          '0812345672', 'somying@email.com',   'F', 'hospital-a'),
